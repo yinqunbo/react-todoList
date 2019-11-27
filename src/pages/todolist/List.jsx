@@ -1,7 +1,19 @@
 import React , { Component } from "react"
+import PropTypes from "prop-types"
+console.log(PropTypes)
 class List extends Component {
+    // static defaultProps = {
+    //     keyword : '我是默认值'
+    // }
+    static propTypes = {
+        keyword : PropTypes.string.isRequired
+    }
     state = {
         list : ['task1','task2']
+    }
+    handleClick(index){
+        this.state.list.splice(index,1)
+        this.setState({})
     }
     UNSAFE_componentWillReceiveProps(props){
         this.setState({
@@ -11,10 +23,7 @@ class List extends Component {
             ]
         })
     }
-    handleClick(index){
-        this.state.list.splice(index,1)
-        this.setState({})
-    }
+    
     render(){
         return (
             <ul>
@@ -28,6 +37,9 @@ class List extends Component {
                         )
                     })
                 }
+                {/* <li>
+                    {this.props.children} // 取出父组件中的子内容
+                </li> */}
             </ul>
         )
     }
